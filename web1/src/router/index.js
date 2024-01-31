@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import AppView from '@/App.vue';
-import HomeView from '@/views/HomeView.vue';
-import DecisionView from '@/views/DecisionView.vue';
-import ExcutionView from '@/views/ExcutionView.vue';
-import AboutView from '@/views/AboutView.vue';
-import SettingView from '@/views/SettingView.vue';
+// import AppView from '@/App.vue';
+import BeginView from '@/views/FuncView/BeginView.vue';
+import HomeView from '@/views/FuncView/HomeView.vue';
+import DecisionView from '@/views/FuncView/DecisionView.vue';
+import ExcutionView from '@/views/FuncView/ExcutionView.vue';
+import AboutView from '@/views/FuncView/AboutView.vue';
+import SettingView from '@/views/FuncView/SettingView.vue';
 
 
 Vue.use(VueRouter);
@@ -14,71 +15,69 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'App',
-    component: AppView,
+    name: 'BeginView',
+    component: BeginView,
     redirect: '/Home',
+    meta:{
+      'title':'ADecision'
+    },
+  },
+  {
+    path: '/Home',
+    name: 'Home',
+    component: HomeView,
+    // redirect: '/PowerChat',
     children: [
-      {
-        path: 'Home',
-        name: 'Home',
-        component: HomeView,
-        // redirect: '/PowerChat',
-        children: [
-          // {
-          //   path: 'PowerChat',
-          //   name: 'PowerChat',
-          //   component: PowerChatView,
-          //   redirect: '/PowerChat/PowerChatTalk',
-          //   meta:{
-          //     'title':'ADecision'
-          //   },
-          // },
-        ],
-        meta:{
-          'title':'Home - ADecision'
-        },
-      },
-      {
-        path: 'Decision',
-        name: 'Decision',
-        component: DecisionView,
-        meta:{
-          'title':'Decision - ADecision'
-        },
-      },
-      {
-        path: 'Excution',
-        name: 'Excution',
-        component: ExcutionView,
-        meta:{
-          'title':'Excution - ADecision'
-        },
-      },
-      {
-        path: 'About',
-        name: 'About',
-        component: AboutView,
-        meta:{
-          'title':'About - ADecision'
-        },
-      },
-      {
-        path: 'Setting',
-        name: 'Setting',
-        component: SettingView,
-        meta:{
-          'title':'Setting - ADecision'
-        },
-      },
+      // {
+      //   path: 'PowerChat',
+      //   name: 'PowerChat',
+      //   component: PowerChatView,
+      //   redirect: '/PowerChat/PowerChatTalk',
+      //   meta:{
+      //     'title':'ADecision'
+      //   },
+      // },
     ],
     meta:{
-      'title':'Homw - ADecision'
+      'title':'Home - ADecision'
+    },
+  },
+  {
+    path: '/Decision',
+    name: 'Decision',
+    component: DecisionView,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/Excution',
+    name: 'Excution',
+    component: ExcutionView,
+    meta:{
+      'title':'Excution - ADecision'
+    },
+  },
+  {
+    path: '/About',
+    name: 'About',
+    component: AboutView,
+    meta:{
+      'title':'About - ADecision'
+    },
+  },
+  {
+    path: '/Setting',
+    name: 'Setting',
+    component: SettingView,
+    meta:{
+      'title':'Setting - ADecision'
     },
   },
   
   {
     path:"*",
-    redirect:'/'
+    redirect:'/Home'
   }
 ];
 

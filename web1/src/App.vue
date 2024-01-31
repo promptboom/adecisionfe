@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <YA_Snackbar ref="YA_SnackbarRef" />
-    
+    <TopView />
+    <LeftView />
+
+
     <v-main>
       <keep-alive>
         <router-view />
@@ -12,12 +15,16 @@
 
 <script>
 import YA_Snackbar from '@/components/SocialComponents/YA_Snackbar.vue';
+import TopView from '@/views/SocialView/TopView.vue';
+import LeftView from '@/views/SocialView/LeftView.vue';
 
 export default {
   name: 'App',
 
   components: {
     YA_Snackbar,
+    TopView,
+    LeftView,
   },
 
   data() {
