@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-system-bar height="40" app>
+    <v-system-bar height="40" app class="backgroundColor">
       <v-spacer></v-spacer>
 
       <v-icon>mdi-square</v-icon>
@@ -29,3 +29,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.backgroundColor {
+  /* background: linear-gradient(to bottom, #296162, #439798); */
+  /* background: linear-gradient(to bottom, #439798, #7ac9cb); */
+  background-color: #67c9cb;
+}
+</style>

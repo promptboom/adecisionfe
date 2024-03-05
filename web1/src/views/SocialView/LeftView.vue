@@ -1,52 +1,84 @@
 <template>
   <div>
-    <v-navigation-drawer
-      v-model="drawer"
+    <v-navigation-drawer 
+      width="240"
       app
-      width="300"
+      clipped 
+      color="#fbfbfb"
+      fixed
     >
-      <v-navigation-drawer
-        v-model="drawer"
-        absolute
-        color="grey lighten-3"
-        mini-variant
-      >
-        <v-avatar
-          class="d-block text-center mx-auto mt-4"
-          color="grey darken-1"
-          size="36"
-        ></v-avatar>
+      <div class="mx-3 mt-6">
+        <v-btn color="#439798" class="text-capitalize text-h6 white--text" block @click="handleHome">
+          home
+        </v-btn>
+      </div>
 
-        <v-divider class="mx-3 my-5"></v-divider>
+      <v-container>
+        <v-divider></v-divider>
+      </v-container>
 
-        <v-avatar
-          v-for="n in 6"
-          :key="n"
-          class="d-block text-center mx-auto mb-9"
-          color="grey lighten-1"
-          size="28"
-        ></v-avatar>
-      </v-navigation-drawer>
-
-      <v-sheet
-        color="grey lighten-5"
-        height="128"
-        width="100%"
-      ></v-sheet>
-
-      <v-list
-        class="pl-14"
-        shaped
-      >
-        <v-list-item
-          v-for="n in 5"
-          :key="n"
-          link
+      <v-list dense>
+        <v-list-group
+          :value="true"
+          color="#439798"
         >
-          <v-list-item-content>
-            <v-list-item-title>Item {{ n }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <template v-slot:activator>
+            <v-list-item-title>Decision Support</v-list-item-title>
+          </template>
+          <v-list-item
+            v-for="([title, icon], i) in DecisionItems"
+            :key="i"
+            link
+            class="ml-4"
+            color="#439798"
+          >
+            <v-list-item-title v-text="title"></v-list-item-title>
+            <v-list-item-icon>
+              <v-icon v-text="icon"></v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-group>
+
+        <v-list-group
+          :value="true"
+          color="#439798"
+        >
+          <template v-slot:activator>
+            <v-list-item-title>Excution Support</v-list-item-title>
+          </template>
+          <v-list-item
+            v-for="([title, icon], i) in ExcutionItems"
+            :key="i"
+            link
+            class="ml-4"
+            color="#439798"
+          >
+            <v-list-item-title v-text="title"></v-list-item-title>
+            <v-list-item-icon>
+              <v-icon v-text="icon"></v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-group>
+
+        <v-list-item-group>
+          <v-list-item
+            color="#439798"
+          >
+            <v-list-item-content class="black--text">
+              <v-list-item-title>Setting</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+
+        <v-list-item-group>
+          <v-list-item
+            color="#439798"
+          >
+            <v-list-item-content class="black--text">
+              <v-list-item-title>About Us</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -62,10 +94,25 @@ export default {
 
   data() {
     return {
+      DecisionItems: [
+        ['Create', 'mdi-plus-outline'],
+        ['Read', 'mdi-file-outline'],
+        ['Update', 'mdi-update'],
+        ['Delete', 'mdi-delete'],
+      ],
+      ExcutionItems: [
+        ['Create', 'mdi-plus-outline'],
+        ['Read', 'mdi-file-outline'],
+        ['Update', 'mdi-update'],
+        ['Delete', 'mdi-delete'],
+      ],
     }
   },
 
   methods: {
+    handleHome() {
+      console.log("home")
+    }
   }
 };
 </script>
