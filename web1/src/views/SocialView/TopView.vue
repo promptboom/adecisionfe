@@ -1,28 +1,44 @@
 <template>
   <div>
     <v-system-bar height="40" app class="backgroundColor">
-      <v-spacer></v-spacer>
+      <div class="ml-n2 d-flex align-center justify-space-between" style="width: 240px;"> 
+        <span class="ml-2 blue-grey--text text--darken-4 text-h6 font-weight-black">ADecision</span>
 
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
+        <YA_barTag class="mx-2" />
+      </div>
+      <v-divider vertical></v-divider>
+      <div class="d-flex align-center justify-space-between">
+        <span class="ml-3 text-body-2 font-weight-black">{{ routerPath }}</span>
+      </div>
     </v-system-bar>
   </div>
 </template>
 
 <script>
+import YA_barTag from '@/components/SocialComponents/YA_barTag.vue';
 
 export default {
   name: 'TopView',
 
   components: {
+    YA_barTag,
   },
 
   data() {
     return {
+      routerPath: "",
     }
+  },
+
+  created() {
+    this.$store.watch(
+      (state) => state.systemMsg.routerPath, () => {
+        this.routerPath = this.$store.getters.getrouterPath;
+      }, {
+        deep: true
+      }
+    );
+    this.routerPath = this.$store.getters.getrouterPath;
   },
 
   methods: {

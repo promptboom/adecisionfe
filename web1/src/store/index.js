@@ -7,6 +7,10 @@ Vue.use(Vuex);
     userMsg: {
       isLogin: false,
     },
+    systemMsg: {
+      leftBarTag: true,
+      routerPath: "",
+    }
   }
 
   const getters= {
@@ -14,12 +18,28 @@ Vue.use(Vuex);
     getisLogin() {
       return state.userMsg.isLogin
     },
+
+    // systemMsg
+    getleftBarTag() {
+      return state.systemMsg.leftBarTag
+    },
+    getrouterPath() {
+      return state.systemMsg.routerPath
+    },
   }
 
   const mutations= {
     // userMsg
     HandleisLogin(state, data) {
       state.userMsg.isLogin = data; 
+    },
+
+    // systemMsg
+    HandleleftBarTag(state, data) {
+      state.systemMsg.leftBarTag = data; 
+    },
+    HandlerouterPath(state, data) {
+      state.systemMsg.routerPath = data; 
     },
   }
 

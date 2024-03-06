@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from "@/store/index"; 
+
 
 // import AppView from '@/App.vue';
 import BeginView from '@/views/FuncView/BeginView.vue';
@@ -8,6 +10,15 @@ import DecisionView from '@/views/FuncView/DecisionView.vue';
 import ExcutionView from '@/views/FuncView/ExcutionView.vue';
 import AboutView from '@/views/FuncView/AboutView.vue';
 import SettingView from '@/views/FuncView/SettingView.vue';
+
+import FilesView from '@/views/FuncView/DecisionComponents/FilesView.vue';
+import CriteriaView from '@/views/FuncView/DecisionComponents/CriteriaView.vue';
+import TradeView from '@/views/FuncView/DecisionComponents/TradeView.vue';
+import SchemeView from '@/views/FuncView/DecisionComponents/SchemeView.vue';
+import AnalyseView from '@/views/FuncView/DecisionComponents/AnalyseView.vue';
+
+import TestingView from '@/views/FuncView/ExcutionComponents/TestingView.vue';
+
 
 
 Vue.use(VueRouter);
@@ -26,18 +37,6 @@ const routes = [
     path: '/Home',
     name: 'Home',
     component: HomeView,
-    // redirect: '/PowerChat',
-    children: [
-      // {
-      //   path: 'PowerChat',
-      //   name: 'PowerChat',
-      //   component: PowerChatView,
-      //   redirect: '/PowerChat/PowerChatTalk',
-      //   meta:{
-      //     'title':'ADecision'
-      //   },
-      // },
-    ],
     meta:{
       'title':'Home - ADecision'
     },
@@ -51,9 +50,57 @@ const routes = [
     },
   },
   {
+    path: '/Files',
+    name: 'Files',
+    component: FilesView,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/Criteria',
+    name: 'Criteria',
+    component: CriteriaView,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/Scheme',
+    name: 'Scheme',
+    component: SchemeView,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/Trade-off',
+    name: 'Trade-off',
+    component: TradeView,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/Analyse',
+    name: 'Analyse',
+    component: AnalyseView,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
     path: '/Excution',
     name: 'Excution',
     component: ExcutionView,
+    meta:{
+      'title':'Excution - ADecision'
+    },
+  },
+  {
+    path: '/Testing',
+    name: 'Testing',
+    component: TestingView,
     meta:{
       'title':'Excution - ADecision'
     },
@@ -90,6 +137,17 @@ router.beforeEach((to,from,next)=>{
   if(to.meta.title){
     document.title=to.meta.title
   }
+  
+  let routerPath = ""
+  if (["Files", "Criteria", "Scheme", "Trade-off", "Analyse"].includes(to.name)) {
+    routerPath = "/Decision/" + to.name
+  } else if (["Testing"].includes(to.name)) {
+    routerPath = "/Excution/" + to.name
+  } else {
+    routerPath = "/" + to.name
+  }
+  store.commit('HandlerouterPath', routerPath);
+
   next()
 });
 
