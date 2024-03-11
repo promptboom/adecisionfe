@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from "@/store/index"; 
+import { getLocalStorage, setLocalStorage, removeLocalStorage } from '@/utils/SystemUtils/localStorage.js'
 
 
 // import AppView from '@/App.vue';
@@ -14,10 +15,18 @@ import SettingView from '@/views/FuncView/SettingView.vue';
 import FilesView from '@/views/FuncView/DecisionComponents/FilesView.vue';
 import CriteriaView from '@/views/FuncView/DecisionComponents/CriteriaView.vue';
 import TradeView from '@/views/FuncView/DecisionComponents/TradeView.vue';
-import SchemeView from '@/views/FuncView/DecisionComponents/SchemeView.vue';
+import AlternativesView from '@/views/FuncView/DecisionComponents/AlternativesView.vue';
 import AnalyseView from '@/views/FuncView/DecisionComponents/AnalyseView.vue';
 
 import TestingView from '@/views/FuncView/ExcutionComponents/TestingView.vue';
+
+import ProjectMsg from '@/views/ProjectView/DecisionProject/ProjectMsg.vue';
+import ProjectFiles from '@/views/ProjectView/DecisionProject/ProjectFiles.vue';
+import ProjectCriteria from '@/views/ProjectView/DecisionProject/ProjectCriteria.vue';
+import ProjectAlternatives from '@/views/ProjectView/DecisionProject/ProjectAlternatives.vue';
+import ProjectTradeOff from '@/views/ProjectView/DecisionProject/ProjectTradeOff.vue';
+import ProjectAnalyse from '@/views/ProjectView/DecisionProject/ProjectAnalyse.vue';
+
 
 
 
@@ -66,9 +75,9 @@ const routes = [
     },
   },
   {
-    path: '/Scheme',
-    name: 'Scheme',
-    component: SchemeView,
+    path: '/Alternatives',
+    name: 'Alternatives',
+    component: AlternativesView,
     meta:{
       'title':'Decision - ADecision'
     },
@@ -106,6 +115,54 @@ const routes = [
     },
   },
   {
+    path: '/ProjectMsg',
+    name: 'ProjectMsg',
+    component: ProjectMsg,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectFiles',
+    name: 'ProjectFiles',
+    component: ProjectFiles,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectCriteria',
+    name: 'ProjectCriteria',
+    component: ProjectCriteria,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectAlternatives',
+    name: 'ProjectAlternatives',
+    component: ProjectAlternatives,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectTradeOff',
+    name: 'ProjectTradeOff',
+    component: ProjectTradeOff,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectAnalyse',
+    name: 'ProjectAnalyse',
+    component: ProjectAnalyse,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
     path: '/About',
     name: 'About',
     component: AboutView,
@@ -138,11 +195,15 @@ router.beforeEach((to,from,next)=>{
     document.title=to.meta.title
   }
   
+  let projectName = getLocalStorage("ADecisionProject");
+
   let routerPath = ""
-  if (["Files", "Criteria", "Scheme", "Trade-off", "Analyse"].includes(to.name)) {
+  if (["Files", "Criteria", "Alternatives", "Trade-off", "Analyse"].includes(to.name)) {
     routerPath = "/Decision/" + to.name
   } else if (["Testing"].includes(to.name)) {
     routerPath = "/Excution/" + to.name
+  } else if (to.name.startsWith("Project")) {
+    routerPath = "/" + projectName + "/" + to.name.substring(7)
   } else {
     routerPath = "/" + to.name
   }

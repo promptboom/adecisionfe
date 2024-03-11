@@ -17,6 +17,7 @@
 import YA_Snackbar from '@/components/SocialComponents/YA_Snackbar.vue';
 import TopView from '@/views/SocialView/TopView.vue';
 import LeftView from '@/views/SocialView/LeftView.vue';
+import { getLocalStorage, setLocalStorage, removeLocalStorage } from '@/utils/SystemUtils/localStorage.js'
 
 export default {
   name: 'App',
@@ -29,6 +30,12 @@ export default {
 
   data() {
     return {
+    }
+  },
+
+  mounted() {
+    if (getLocalStorage('ADecisionProject')) {
+      this.$store.commit('HandleprojectName', getLocalStorage('ADecisionProject'));
     }
   },
 

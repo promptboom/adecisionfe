@@ -10,6 +10,7 @@ Vue.use(Vuex);
     systemMsg: {
       leftBarTag: true,
       routerPath: "",
+      projectName: "",
     }
   }
 
@@ -25,7 +26,11 @@ Vue.use(Vuex);
     },
     getrouterPath() {
       return state.systemMsg.routerPath
+    }, 
+    getprojectName() {
+      return state.systemMsg.projectName
     },
+
   }
 
   const mutations= {
@@ -40,6 +45,9 @@ Vue.use(Vuex);
     },
     HandlerouterPath(state, data) {
       state.systemMsg.routerPath = data; 
+    }, 
+    HandleprojectName(state, data) {
+      state.systemMsg.projectName = data; 
     },
   }
 
