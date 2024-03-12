@@ -38,8 +38,8 @@
                   <v-list-item
                     v-for="([title, icon], i) in ItemTag.items"
                     :key="i"
-                    link
                     color="#439798"
+                    @click="handleMultipleItem(i)"
                   >
                     <v-list-item-title v-text="title" class="ml-4"></v-list-item-title>
                     <v-list-item-icon>
@@ -51,6 +51,7 @@
                 <v-list-item
                   v-else
                   color="#439798"
+                  @click="handleItem(ItemTag.name)"
                 >
                   <v-list-item-title>{{ ItemTag.items[0][0] }}</v-list-item-title>
                   <v-list-item-icon>
@@ -115,17 +116,17 @@ export default {
           ],
         },
         {
-          name: "Trade-off",
+          name: "Trade-Off",
           multiple: false,
           items: [
-            ['Files', 'mdi-file-account-outline'],
+            ['Trade-Off', 'mdi-head-cog-outline'],
           ],
         },
         {
           name: "Analyse",
           multiple: false,
           items: [
-            ['Files', 'mdi-file-account-outline'],
+            ['Analyse', 'mdi-tablet-dashboard'],
           ],
         },
       ],
@@ -143,12 +144,63 @@ export default {
       }
     );
     this.projectName = this.$store.getters.getprojectName;
+
+    this.$store.watch(
+      (state) => state.systemMsg.routerPath, () => {
+        this.handleFocus();
+      }, {
+        deep: true
+      }
+    );
+    this.handleFocus();
+
   },
 
   methods: {
     handleQuitProject() {
       removeLocalStorage("ADecisionProject")
       this.$store.commit('HandleprojectName', "");
+    },
+    handleFocus() {
+      if (this.$router.currentRoute.fullPath.substring(8) == 'Msg') {
+        this.ColectItem = [1, undefined, undefined, undefined, undefined]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'Files') {
+        this.ColectItem = [2, undefined, undefined, undefined, undefined]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'Criteria') {
+        this.ColectItem = [undefined, 0, undefined, undefined, undefined]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'Alternatives') {
+        this.ColectItem = [undefined, undefined, 0, undefined, undefined]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'TradeOff') {
+        this.ColectItem = [undefined, undefined, undefined, 0, undefined]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'Analyse') {
+        this.ColectItem = [undefined, undefined, undefined, undefined, 0]
+      }
+    },
+    handleMultipleItem(index) {
+      let routerName = ''
+      if (index) {
+        routerName = 'ProjectFiles'
+      } else {
+        routerName = 'ProjectMsg'
+      }
+      if (this.$router.currentRoute.path !== '/' + routerName) {
+        this.$router.push('/' + routerName);
+      }
+    },
+    handleItem(name) {
+      let routerName = ''
+      if (name == "Criteria") {
+        routerName = 'ProjectCriteria'
+      } else if (name == "Alternatives") {
+        routerName = 'ProjectAlternatives'
+      } else if (name == "Trade-Off") {
+        routerName = 'ProjectTradeOff'
+      } else if (name == "Analyse") {
+        routerName = 'ProjectAnalyse'
+      }
+      if (this.$router.currentRoute.path !== '/' + routerName) {
+        this.$router.push('/' + routerName);
+      }
     }
   }
 };
