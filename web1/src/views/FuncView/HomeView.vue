@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <div class="d-flex align-center">
-        <span class="text--h6 ma-4">QUICK START</span>
+        <span class="ma-4">QUICK START</span>
         <v-divider></v-divider>
       </div>
 
@@ -24,7 +24,7 @@
             >
               {{ item.icon }}
             </v-icon>
-            <span class="text--h6 mt-2">{{ item.name }}</span>
+            <span class="mt-2">{{ item.name }}</span>
           </v-container>
         </v-card>
       </div>
@@ -32,7 +32,7 @@
 
     <div class="mt-4">
       <div class="d-flex align-center">
-        <span class="text--h6 ma-4">TRY DEMO</span>
+        <span class="ma-4">TRY DEMO</span>
         <v-divider></v-divider>
       </div>
 
@@ -83,7 +83,7 @@
 
     <div class="mt-4">
       <div class="d-flex align-center">
-        <span class="text--h6 ma-4">ALL ITEMS</span>
+        <span class="ma-4">ALL ITEMS</span>
         <v-divider></v-divider>
       </div>
 
