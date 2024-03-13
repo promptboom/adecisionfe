@@ -261,6 +261,10 @@ export default {
     handleEnterProject(id, name, type) {
       setLocalStorage("ADecisionProject", name)
       this.$store.commit('HandleprojectName', name);
+      let routerName = "ProjectMsg"
+      if (this.$router.currentRoute.path !== '/' + routerName) {
+        this.$router.push('/' + routerName);
+      }
 
     }
   }

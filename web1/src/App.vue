@@ -36,6 +36,12 @@ export default {
   mounted() {
     if (getLocalStorage('ADecisionProject')) {
       this.$store.commit('HandleprojectName', getLocalStorage('ADecisionProject'));
+      if (!this.$router.currentRoute.fullPath.startsWith('/Project')) {
+        let routerName = "ProjectMsg"
+        if (this.$router.currentRoute.path !== '/' + routerName) {
+          this.$router.push('/' + routerName);
+        }
+      }
     }
   },
 

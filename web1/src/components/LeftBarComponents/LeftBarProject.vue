@@ -21,8 +21,8 @@
         dense
         class="ml-n6"
       >
-        <template v-for="(ItemTag, index) in ItemTags">
-          <v-timeline-item fill-dot small :color="TimeItemColor[index] == 1 ? 'green' : 'red'" :key="index">
+        <div v-for="(ItemTag, index) in ItemTags" :key="index">
+          <v-timeline-item fill-dot small :color="TimeItemColor[index] == 1 ? 'green' : 'orange'">
             <v-list dense nav class="ml-n8 mt-n3">
               <v-list-item-group
                 v-model="ColectItem[index]"
@@ -62,7 +62,7 @@
               </v-list-item-group>
             </v-list>
           </v-timeline-item>
-        </template>
+        </div>
       </v-timeline>
     </div>
 
@@ -160,6 +160,10 @@ export default {
     handleQuitProject() {
       removeLocalStorage("ADecisionProject")
       this.$store.commit('HandleprojectName', "");
+      let routerName = "Home"
+      if (this.$router.currentRoute.path !== '/' + routerName) {
+        this.$router.push('/' + routerName);
+      }
     },
     handleFocus() {
       if (this.$router.currentRoute.fullPath.substring(8) == 'Msg') {
