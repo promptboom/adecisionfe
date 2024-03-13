@@ -29,7 +29,7 @@
             min-height="160"
             outlined
             :elevation="hover ? 12 : 2"
-            :class="{ 'on-hover': !hover }"
+            :class="{ 'on-hover': hover }"
           >
             <v-container class="d-flex justify-center flex-wrap align-center">
               <v-icon
@@ -38,17 +38,15 @@
               >
                 {{ item.icon }}
               </v-icon>
-              <div class="align-self-center">
-                <v-btn
-                  v-for="(icon, index) in icons"
-                  :key="index"
-                  :class="{ 'show-btns': !hover }"
-                  icon
-                >
-                  <v-icon
-                    :class="{ 'show-btns': !hover }"
-                  >
-                    {{ icon }}
+              <div class="align-self-center" v-if="!item.isUploading">
+                <v-btn :class="{ 'show-btns': !hover }" icon>
+                  <v-icon :class="{ 'show-btns': !hover }">
+                    mdi-eye
+                  </v-icon>
+                </v-btn>
+                <v-btn :class="{ 'show-btns': !hover }" icon>
+                  <v-icon :class="{ 'show-btns': !hover }">
+                    mdi-delete
                   </v-icon>
                 </v-btn>
               </div>
@@ -86,8 +84,6 @@ export default {
 
   data() {
     return {
-      icons: ['mdi-rewind', 'mdi-play', 'mdi-fast-forward'],
-      
       ProjectFileItems: [
         {
           name: 'project file asad fasd fasdfsadf sdfasdfasfasdf',
@@ -184,13 +180,13 @@ export default {
 </script>
 
 <style scoped>
-/* .v-card {
+.v-card {
   transition: opacity .4s ease-in-out;
-} */
+}
 
-/* .v-card:not(.on-hover) {
+.v-card:is(.on-hover) {
   opacity: 0.6;
- } */
+ }
 
 .show-btns {
   color: rgba(255, 255, 255, 1) !important;

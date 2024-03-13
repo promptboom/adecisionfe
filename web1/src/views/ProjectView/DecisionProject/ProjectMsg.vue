@@ -7,6 +7,10 @@
       </div>
       <div class="ml-4 mb-4 d-flex">
         <v-btn color="#439798" class="text-capitalize text-body-1 white--text" small>
+          Load File
+          <v-icon size="20" class="ml-1" color="white">mdi-file-upload-outline</v-icon>
+        </v-btn>
+        <v-btn color="#439798" class="text-capitalize text-body-1 white--text ml-4" small>
           modify
           <v-icon size="20" class="ml-1" color="white">mdi-rename-outline</v-icon>
         </v-btn>
