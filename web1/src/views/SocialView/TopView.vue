@@ -2,13 +2,13 @@
   <div>
     <v-system-bar height="40" app class="backgroundColor">
       <div class="ml-n2 d-flex align-center justify-space-between" style="width: 240px;"> 
-        <span class="ml-2 blue-grey--text text--darken-4 text-h6 font-weight-black">ADecision</span>
+        <span class="ml-2 white--text text--darken-4 text-h6 font-weight-black">ADecision</span>
 
         <YA_barTag class="mx-2" />
       </div>
       <v-divider vertical></v-divider>
       <div class="d-flex align-center justify-space-between">
-        <span class="ml-3 text-body-2 font-weight-black">{{ routerPath }}</span>
+        <span class="ml-3 white--text text-body-2 font-weight-black">{{ routerPath }}</span>
       </div>
     </v-system-bar>
   </div>
@@ -50,6 +50,6 @@ export default {
 .backgroundColor {
   /* background: linear-gradient(to bottom, #296162, #439798); */
   /* background: linear-gradient(to bottom, #439798, #7ac9cb); */
-  background-color: #67c9cb;
+  background-color: #439798;
 }
 </style>

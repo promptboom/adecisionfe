@@ -25,7 +25,9 @@ import ProjectFiles from '@/views/ProjectView/DecisionProject/ProjectFiles.vue';
 import ProjectCriteria from '@/views/ProjectView/DecisionProject/ProjectCriteria.vue';
 import ProjectAlternatives from '@/views/ProjectView/DecisionProject/ProjectAlternatives.vue';
 import ProjectTradeOff from '@/views/ProjectView/DecisionProject/ProjectTradeOff.vue';
-import ProjectAnalyse from '@/views/ProjectView/DecisionProject/ProjectAnalyse.vue';
+import ProjectAnalyseSummary from '@/views/ProjectView/DecisionProject/ProjectAnalyseSummary.vue';
+import ProjectAnalysePreferance from '@/views/ProjectView/DecisionProject/ProjectAnalysePreferance.vue';
+import ProjectAnalyseAlternatives from '@/views/ProjectView/DecisionProject/ProjectAnalyseAlternatives.vue';
 
 
 
@@ -155,9 +157,25 @@ const routes = [
     },
   },
   {
-    path: '/ProjectAnalyse',
-    name: 'ProjectAnalyse',
-    component: ProjectAnalyse,
+    path: '/ProjectAnalyseSummary',
+    name: 'ProjectAnalyseSummary',
+    component: ProjectAnalyseSummary,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectAnalysePreferance',
+    name: 'ProjectAnalysePreferance',
+    component: ProjectAnalysePreferance,
+    meta:{
+      'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/ProjectAnalyseAlternatives',
+    name: 'ProjectAnalyseAlternatives',
+    component: ProjectAnalyseAlternatives,
     meta:{
       'title':'Decision - ADecision'
     },

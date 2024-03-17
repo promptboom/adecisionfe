@@ -2,7 +2,7 @@
 <template>
   <div class="d-flex align-center">
     <v-btn
-      color="#296162"
+      color="white"
       @mouseover="setHover" 
       @mouseleave="leaveHover"
       @click="handleBarTag"

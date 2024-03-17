@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <div class="d-flex align-center">
-        <span class="ma-4">CRITERIA</span>
+        <span class="mr-4 my-4 text-h6 font-weight-black">CRITERIA</span>
         <v-divider></v-divider>
       </div>
       <div class="ml-4 mb-4 d-flex">
@@ -14,78 +14,11 @@
           <v-icon size="20" class="mr-1" color="white">mdi-plus</v-icon>
           New Criteration
         </v-btn>
-        <v-btn color="#439798" class="text-capitalize text-body-1 white--text ml-4" small @click="handleCriteriaModify">
-          modify
-          <v-icon size="20" class="ml-1" color="white">mdi-rename-outline</v-icon>
-        </v-btn>
-        <v-btn color="#439798" class="text-capitalize text-body-1 white--text ml-4" small @click="handleCriteriaSave">
-          save
-          <v-icon size="20" class="ml-1" color="white">mdi-content-save-edit-outline</v-icon>
-        </v-btn>
       </div>
       <v-divider></v-divider>
     </div>
 
-    <div class="mt-4" v-if="criteriaShowType">
-      <v-expansion-panels v-model="criteriaPanel" multiple focusable>
-        <v-expansion-panel v-for="(criteriaItem, index) in criteriaItems" :key="index">
-          <v-expansion-panel-header>
-            <div class="d-flex justify-space-between align-center">
-              <span class="text-body-1 font-weight-bold">
-                {{ criteriaItem.title }}
-              </span>
-              <v-btn class="mr-4" icon color="dark-grey" x-small>
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
-            </div>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content class="ml-4">
-            <span class="text-body-2 grey--text ml-2">Highest ranked</span>
-            <draggable v-model="criteriaItem.levelItems" >
-              <div v-for="(item, index) in criteriaItem.levelItems" :key="index">
-                <v-divider v-if="index !== 0"></v-divider>
-                <v-list dense>
-                  <v-list-item dense>
-                    <v-icon size="20" class="ml-1 drag-handle">mdi-cursor-move</v-icon>
-                    <v-list-item-content class="ml-3">
-                      <v-text-field
-                        v-if="item.isRewrite"
-                        dense
-                        width="200"
-                        v-model="item.newContent"
-                        class="mr-4 mb-n8 mt-n2"
-                        append-icon="mdi-arrow-right-bold-box"
-                        @click:append="item.isRewrite = false"
-                        solo
-                      ></v-text-field>
-                      <v-list-item-title v-else>{{ item.content }}</v-list-item-title>
-                      
-                    </v-list-item-content>
-                    
-                    <v-btn class="mr-4" icon color="dark-grey" x-small @click="item.isRewrite = true">
-                      <v-icon>mdi-rename-outline</v-icon>
-                    </v-btn>
-                    <v-btn class="mr-4" icon color="dark-grey" x-small>
-                      <v-icon>mdi-delete</v-icon>
-                    </v-btn>
-                  </v-list-item>
-                </v-list>
-              </div>
-            </draggable>
-            <span class="text-body-2 grey--text ml-2">Lowest ranked</span>
-            <br>
-            <v-btn color="#439798" class="text-capitalize text-body-1 white--text ml-2 mt-2" small>
-              <v-icon size="20" class="mr-1" color="white">mdi-plus</v-icon>
-              New Level
-            </v-btn>
-
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-
-    </div>
-
-    <div class="mt-4" v-else>
+    <div class="mt-4">
       <v-card elevation="3">
         <v-card-title>
           Criteria List
@@ -99,9 +32,108 @@
           class="elevation-1"
           fixed-header
         >
+          <template v-slot:[`item.actions`]="{ item }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="handleNewCriteriaItem"
+            >
+              mdi-pencil
+            </v-icon>
+            <v-icon
+              small
+              @click="deleteItem(item)"
+            >
+              mdi-delete
+            </v-icon>
+          </template>
+          <template v-slot:no-data>
+            <v-btn
+              color="primary"
+              @click="initialize"
+            >
+              Reset
+            </v-btn>
+          </template>
         </v-data-table>
       </v-card>
     </div>
+
+    <v-dialog
+      v-model="criteriaDialog"
+      persistent
+      max-width="666"
+    >
+      <v-card>
+        <v-card-title class="text-h5">
+          <v-textarea
+            v-model="editName"
+            class="mt-4"
+            rows="1"
+            dense
+            solo
+            label="Criteria Name"
+          ></v-textarea>
+        </v-card-title>
+        <div class="ml-4 mt-n2">
+          <span class="text-body-2 grey--text ml-2">Highest ranked</span>
+          <draggable v-model="editLevelItems" >
+            <div v-for="(item, index) in editLevelItems" :key="index">
+              <v-divider v-if="index !== 0"></v-divider>
+              <v-list dense>
+                <v-list-item dense>
+                  <v-icon size="20" class="ml-1 drag-handle">mdi-cursor-move</v-icon>
+                  <v-list-item-content class="ml-3">
+                    <v-text-field
+                      v-if="item.isRewrite"
+                      dense
+                      width="200"
+                      v-model="item.newContent"
+                      class="mr-4 mb-n8 mt-n2"
+                      append-icon="mdi-arrow-right-bold-box"
+                      @click:append="item.isRewrite = false"
+                      solo
+                    ></v-text-field>
+                    <v-list-item-title v-else>{{ item.content }}</v-list-item-title>
+                    
+                  </v-list-item-content>
+                  
+                  <v-btn class="mr-4" icon color="dark-grey" x-small @click="item.isRewrite = true">
+                    <v-icon>mdi-rename-outline</v-icon>
+                  </v-btn>
+                  <v-btn class="mr-4" icon color="dark-grey" x-small>
+                    <v-icon>mdi-delete</v-icon>
+                  </v-btn>
+                </v-list-item>
+              </v-list>
+            </div>
+          </draggable>
+          <span class="text-body-2 grey--text ml-2">Lowest ranked</span>
+          <br>
+          <v-btn color="#439798" class="text-capitalize text-body-1 white--text ml-2 mt-2" small>
+            <v-icon size="20" class="mr-1" color="white">mdi-plus</v-icon>
+            New Level
+          </v-btn>
+        </div>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="criteriaDialog = false"
+          >
+            Disagree
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="criteriaDialog = false"
+          >
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
   
@@ -117,19 +149,39 @@ export default {
 
   data() {
     return {
-      selected: [],
-        headers: [
-          {
-            text: 'Criteria',
-            align: 'start',
-            sortable: false,
-            value: 'Criteria',
-          },
-          { text: 'Levels', value: 'Levels', align: 'center'},
-        ],
+      criteriaDialog: false,
+      editName: '',
+      editLevelItems: [
+        {
+          content: '123',
+          newContent: '',
+          isRewrite: false,
+        },
+        {
+          content: '234',
+          newContent: '',
+          isRewrite: false,
+        },
+        {
+          content: '345',
+          newContent: '',
+          isRewrite: false,
+        },
+      ],
 
-      criteriaShowType: false,
-      
+      selected: [],
+      headers: [
+        {
+          text: 'Criteria',
+          align: 'start',
+          sortable: false,
+          value: 'Criteria',
+        },
+        { text: 'Levels', value: 'Levels', align: 'center', sortable: false, },
+        { text: 'Actions', value: 'actions', sortable: false, width: 88 },
+
+      ],
+
       criteriaItems: [
         {
           title: 'lalala', 
@@ -196,10 +248,6 @@ export default {
   },
 
   computed: {
-    criteriaPanel() {
-      let len = this.criteriaItems.length
-      return Array.from(Array(len).keys());
-    },
     criteriaDataTable() {
       let returnTags = []
       let midItem = {}
@@ -226,7 +274,10 @@ export default {
     },
     handleCriteriaSave() {
       this.criteriaShowType = false
-    }
+    },
+    handleNewCriteriaItem() {
+      this.criteriaDialog = true;
+    },
   }
 };
 </script>

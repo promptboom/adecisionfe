@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <div class="d-flex align-center">
-        <span class="ma-4">PROJECT FILES</span>
+        <span class="mr-4 my-4 text-h6 font-weight-black">PROJECT FILES</span>
         <v-divider></v-divider>
       </div>
       <div class="ml-4 mb-4 d-flex">

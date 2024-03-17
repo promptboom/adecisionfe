@@ -1,12 +1,12 @@
 <template>
   <div>
-    ProjectAnalyse
+    ProjectAnalyseAlternatives
   </div>
 </template>
   
 <script>
 export default {
-  name: 'ProjectAnalyse',
+  name: 'ProjectAnalyseAlternatives',
 
   components: {
   },

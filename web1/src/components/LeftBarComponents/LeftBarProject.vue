@@ -39,7 +39,7 @@
                     v-for="([title, icon], i) in ItemTag.items"
                     :key="i"
                     color="#439798"
-                    @click="handleMultipleItem(i)"
+                    @click="handleMultipleItem(index, i)"
                   >
                     <v-list-item-title v-text="title" class="ml-4"></v-list-item-title>
                     <v-list-item-icon>
@@ -124,9 +124,11 @@ export default {
         },
         {
           name: "Analyse",
-          multiple: false,
+          multiple: true,
           items: [
-            ['Analyse', 'mdi-tablet-dashboard'],
+            ['Summary', 'mdi-tablet-dashboard'],
+            ['Preferance', 'mdi-chart-bar-stacked'],
+            ['Alternatives', 'mdi-vector-point-select'],
           ],
         },
       ],
@@ -176,16 +178,30 @@ export default {
         this.ColectItem = [undefined, undefined, 0, undefined, undefined]
       } else if (this.$router.currentRoute.fullPath.substring(8) == 'TradeOff') {
         this.ColectItem = [undefined, undefined, undefined, 0, undefined]
-      } else if (this.$router.currentRoute.fullPath.substring(8) == 'Analyse') {
-        this.ColectItem = [undefined, undefined, undefined, undefined, 0]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalyseSummary') {
+        this.ColectItem = [undefined, undefined, undefined, undefined, 1]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalysePreferance') {
+        this.ColectItem = [undefined, undefined, undefined, undefined, 2]
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalyseAlternatives') {
+        this.ColectItem = [undefined, undefined, undefined, undefined, 3]
       }
     },
-    handleMultipleItem(index) {
+    handleMultipleItem(index, i) {
       let routerName = ''
-      if (index) {
-        routerName = 'ProjectFiles'
-      } else {
-        routerName = 'ProjectMsg'
+      if (index == 0) {
+        if (i) {
+          routerName = 'ProjectFiles'
+        } else {
+          routerName = 'ProjectMsg'
+        }
+      } else if (index == 4) {
+        if (i == 0) {
+          routerName = 'ProjectAnalyseSummary'
+        } else if (i == 1) {
+          routerName = 'ProjectAnalysePreferance'
+        } else if (i == 2) {
+          routerName = 'ProjectAnalyseAlternatives'
+        }
       }
       if (this.$router.currentRoute.path !== '/' + routerName) {
         this.$router.push('/' + routerName);
@@ -199,8 +215,6 @@ export default {
         routerName = 'ProjectAlternatives'
       } else if (name == "Trade-Off") {
         routerName = 'ProjectTradeOff'
-      } else if (name == "Analyse") {
-        routerName = 'ProjectAnalyse'
       }
       if (this.$router.currentRoute.path !== '/' + routerName) {
         this.$router.push('/' + routerName);

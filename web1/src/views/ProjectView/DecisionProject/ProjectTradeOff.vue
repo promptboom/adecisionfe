@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <div class="d-flex align-center">
-        <span class="ma-4">CRITERIA</span>
+        <span class="mr-4 my-4 text-h6 font-weight-black">TRADE OFF</span>
         <v-divider></v-divider>
       </div>
       <div class="ml-4 mb-4 d-flex">
@@ -110,7 +110,7 @@
           class="elevation-1"
         >
           <template v-slot:[`item.Tag1`]="{ item }">
-            <v-card class="my-1 py-1" flat :color="item.choice[0] ? 'light-green' : 'transparent'">
+            <v-card class="my-1 py-1" flat :color="item.choice[0] ? '#67c9cb' : 'transparent'">
               <v-row v-for="(value, key) in item.Tag1" :key="key" no-gutters class="my-1">
                 <v-col cols="6" class="d-flex justify-end">
                   <span class="mx-2 text-body-1 grey--text text--darken-2 font-weight-bold">{{ key }}</span>
@@ -123,7 +123,7 @@
           </template>
 
           <template v-slot:[`item.Tag2`]="{ item }">
-            <v-card class="my-1 py-1" flat :color="item.choice[1] ? 'light-green' : 'transparent'">
+            <v-card class="my-1 py-1" flat :color="item.choice[1] ? '#67c9cb' : 'transparent'">
               <v-row v-for="(value, key) in item.Tag2" :key="key" no-gutters class="my-1">
                 <v-col cols="6" class="d-flex justify-end">
                   <span class="mx-2 text-body-1 grey--text text--darken-2 font-weight-bold">{{ key }}</span>

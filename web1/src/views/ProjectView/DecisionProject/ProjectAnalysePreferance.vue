@@ -1,13 +1,12 @@
 <template>
   <div>
-    DecisionViewsdafsdf
+    ProjectAnalysePreferance
   </div>
 </template>
-
+  
 <script>
-
 export default {
-  name: 'DecisionView',
+  name: 'ProjectAnalysePreferance',
 
   components: {
   },
@@ -17,7 +16,18 @@ export default {
     }
   },
 
+  created() {
+  },
+
+  mounted() {
+
+  },
+  
   methods: {
   }
 };
 </script>
+
+<style scoped>
+
+</style>

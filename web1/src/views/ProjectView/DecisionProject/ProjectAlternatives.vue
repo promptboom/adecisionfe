@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <div class="d-flex align-center">
-        <span class="ma-4">ALTERNATIVES</span>
+        <span class="mr-4 my-4 text-h6 font-weight-black">ALTERNATIVES</span>
         <v-divider></v-divider>
       </div>
       <div class="ml-4 mb-4 d-flex">
@@ -159,13 +159,8 @@ export default {
         { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Protein (g)', value: 'protein' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'Actions', value: 'actions', sortable: false, width: 88 },
       ],
       desserts: [],
 
