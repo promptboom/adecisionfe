@@ -22,7 +22,7 @@
         class="ml-n6"
       >
         <div v-for="(ItemTag, index) in ItemTags" :key="index">
-          <v-timeline-item fill-dot small :color="TimeItemColor[index] == 1 ? 'green' : 'orange'">
+          <v-timeline-item fill-dot small :color="TimeItemColor[index] == 1 ? 'green' : 'orange'" class="my-n4">
             <v-list dense nav class="ml-n8 mt-n3">
               <v-list-item-group
                 v-model="ColectItem[index]"
@@ -66,7 +66,7 @@
       </v-timeline>
     </div>
 
-    <div class="mt-auto ma-4">
+    <div class="mt-auto pa-4">
       <v-divider class="mb-3"></v-divider>
 
       <v-btn color="#439798" class="text-capitalize text-h6 white--text" block @click="handleQuitProject">
@@ -127,7 +127,7 @@ export default {
           multiple: true,
           items: [
             ['Summary', 'mdi-tablet-dashboard'],
-            ['Preferance', 'mdi-chart-bar-stacked'],
+            ['Preference', 'mdi-chart-bar-stacked'],
             ['Alternatives', 'mdi-vector-point-select'],
           ],
         },
@@ -180,7 +180,7 @@ export default {
         this.ColectItem = [undefined, undefined, undefined, 0, undefined]
       } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalyseSummary') {
         this.ColectItem = [undefined, undefined, undefined, undefined, 1]
-      } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalysePreferance') {
+      } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalysePreference') {
         this.ColectItem = [undefined, undefined, undefined, undefined, 2]
       } else if (this.$router.currentRoute.fullPath.substring(8) == 'AnalyseAlternatives') {
         this.ColectItem = [undefined, undefined, undefined, undefined, 3]
@@ -198,7 +198,7 @@ export default {
         if (i == 0) {
           routerName = 'ProjectAnalyseSummary'
         } else if (i == 1) {
-          routerName = 'ProjectAnalysePreferance'
+          routerName = 'ProjectAnalysePreference'
         } else if (i == 2) {
           routerName = 'ProjectAnalyseAlternatives'
         }

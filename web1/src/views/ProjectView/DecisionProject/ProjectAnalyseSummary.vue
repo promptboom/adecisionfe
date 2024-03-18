@@ -7,11 +7,11 @@
       </div>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4 mb-16">
       <v-row>
         <v-col cols="6">
           <v-card outlined height="450">
-            <span class="text-body-1 float-start mt-n3 ml-2 px-2" style="background-color: white; color: #CC3333;">Preferance Analysis</span>
+            <span class="text-body-1 float-start mt-n3 ml-2 px-2" style="background-color: white; color: #CC3333;">Preference Analysis</span>
             <v-container>
               <p class="text-body-2 mt-2 px-2">These numbers, determined by your trade-offs, represent the relative importance of your criteria.</p>
               <div class="pa-4">
@@ -19,8 +19,8 @@
               </div>
             </v-container>
             <div class="d-flex justify-center">
-              <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handleQuitProject">
-                Preferance Analysis
+              <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handlePreferenceAnalysis">
+                Preference Analysis
               </v-btn>
             </div>
           </v-card>
@@ -36,11 +36,17 @@
             </v-container>
             
             <div class="d-flex justify-center">
-              <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handleQuitProject">
+              <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handleAlternativesAnalysis">
                 Alternatives Analysis
               </v-btn>
             </div>
           </v-card>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols="12">
+          <AnalyseChat />
         </v-col>
       </v-row>
     </div>
@@ -49,17 +55,19 @@
   
 <script>
 import Chart from 'chart.js/auto';
+import AnalyseChat from '@/components/ProjectComponents/AnalyseChat.vue';
 
 export default {
   name: 'ProjectAnalyseSummary',
 
   components: {
+    AnalyseChat,
   },
 
   data() {
     return {
-      preferanceTags: ['size', 'beach', 'type', 'isok', 'position', 'school'],
-      preferanceData: [0.23, 0.32, 0.12, 0.3, 0.2, 0.16]
+      preferenceTags: ['size', 'beach', 'type', 'isok', 'position', 'school'],
+      preferenceData: [0.23, 0.32, 0.12, 0.3, 0.2, 0.16]
     }
   },
 
@@ -68,20 +76,20 @@ export default {
   },
 
   mounted() {
-    this.generatePreferanceChart();
+    this.generatePreferenceChart();
     this.generateAlternativeChart();
 
   },
   
   methods: {
-    generatePreferanceChart() {
+    generatePreferenceChart() {
       const ctx = this.$refs.perferanceBarChart.getContext('2d');
       new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: this.preferanceTags,
+          labels: this.preferenceTags,
           datasets: [{
-            data: this.preferanceData,
+            data: this.preferenceData,
             backgroundColor: '#67c9cb',
             borderWidth: 1
           }]
@@ -185,7 +193,13 @@ export default {
           }
         }
       });
-    }
+    },
+    handlePreferenceAnalysis() {
+
+    },
+    handleAlternativesAnalysis() {
+
+    },
   }
 };
 </script>

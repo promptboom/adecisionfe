@@ -26,7 +26,7 @@ import ProjectCriteria from '@/views/ProjectView/DecisionProject/ProjectCriteria
 import ProjectAlternatives from '@/views/ProjectView/DecisionProject/ProjectAlternatives.vue';
 import ProjectTradeOff from '@/views/ProjectView/DecisionProject/ProjectTradeOff.vue';
 import ProjectAnalyseSummary from '@/views/ProjectView/DecisionProject/ProjectAnalyseSummary.vue';
-import ProjectAnalysePreferance from '@/views/ProjectView/DecisionProject/ProjectAnalysePreferance.vue';
+import ProjectAnalysePreference from '@/views/ProjectView/DecisionProject/ProjectAnalysePreference.vue';
 import ProjectAnalyseAlternatives from '@/views/ProjectView/DecisionProject/ProjectAnalyseAlternatives.vue';
 
 
@@ -165,9 +165,9 @@ const routes = [
     },
   },
   {
-    path: '/ProjectAnalysePreferance',
-    name: 'ProjectAnalysePreferance',
-    component: ProjectAnalysePreferance,
+    path: '/ProjectAnalysePreference',
+    name: 'ProjectAnalysePreference',
+    component: ProjectAnalysePreference,
     meta:{
       'title':'Decision - ADecision'
     },
