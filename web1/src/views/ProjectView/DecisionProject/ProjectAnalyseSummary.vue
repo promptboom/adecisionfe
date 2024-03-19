@@ -1,67 +1,70 @@
 <template>
-  <v-container>
-    <div>
-      <div class="d-flex align-center">
-        <span class="mr-4 my-4 text-h6 font-weight-black">RESULTS</span>
-        <v-divider></v-divider>
-      </div>
-    </div>
-
-    <div class="mt-4 mb-16">
-      <v-row>
-        <v-col cols="6">
-          <v-card outlined height="450">
-            <span class="text-body-1 float-start mt-n3 ml-2 px-2" style="background-color: white; color: #CC3333;">Preference Analysis</span>
-            <v-container>
-              <p class="text-body-2 mt-2 px-2">These numbers, determined by your trade-offs, represent the relative importance of your criteria.</p>
-              <div class="pa-4">
-                <canvas ref="perferanceBarChart"></canvas>
+  <div>
+    <v-row no-gutters>
+      <v-col cols="6" class="d-flex">
+        <YA_ScrollComponent ref="ScrollComRef" :scrollHeight="40" v-scroll.self="onScroll">
+          <v-container>
+            <div>
+              <div class="d-flex align-center">
+                <span class="mr-4 my-4 text-h6 font-weight-black">RESULTS</span>
+                <v-divider></v-divider>
               </div>
-            </v-container>
-            <div class="d-flex justify-center">
-              <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handlePreferenceAnalysis">
-                Preference Analysis
-              </v-btn>
             </div>
-          </v-card>
-        </v-col>
-        <v-col cols="6">
-          <v-card outlined height="450">
-            <span class="text-body-1 float-start mt-n3 ml-2 px-2" style="background-color: white; color: #CC3333;">Alternatives Analysis</span>
-            <v-container>
-              <p class="text-body-2 mt-2 px-2">Your alternatives ranked by their total score, based on your preference values.</p>
-              <div class="pa-4">
-                <canvas ref="alternativeBarChart"></canvas>
-              </div>
-            </v-container>
-            
-            <div class="d-flex justify-center">
-              <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handleAlternativesAnalysis">
-                Alternatives Analysis
-              </v-btn>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
 
-      <v-row>
-        <v-col cols="12">
-          <AnalyseChat />
-        </v-col>
-      </v-row>
-    </div>
-  </v-container>
+            <div class="mt-4">
+              <v-card outlined>
+                <span class="text-body-1 float-start mt-n3 ml-2 px-2" style="background-color: white; color: #CC3333;">Preference Analysis</span>
+                <v-container>
+                  <p class="text-body-2 mt-2 px-2">These numbers, determined by your trade-offs, represent the relative importance of your criteria.</p>
+                  <div class="pa-4">
+                    <canvas ref="perferanceBarChart"></canvas>
+                  </div>
+                </v-container>
+                <div class="d-flex justify-center">
+                  <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handlePreferenceAnalysis">
+                    Preference Analysis
+                  </v-btn>
+                </div>
+              </v-card>
+              <v-card outlined class="mt-8">
+                <span class="text-body-1 float-start mt-n3 ml-2 px-2" style="background-color: white; color: #CC3333;">Alternatives Analysis</span>
+                <v-container>
+                  <p class="text-body-2 mt-2 px-2">Your alternatives ranked by their total score, based on your preference values.</p>
+                  <div class="pa-4">
+                    <canvas ref="alternativeBarChart"></canvas>
+                  </div>
+                </v-container>
+                
+                <div class="d-flex justify-center">
+                  <v-btn color="#439798" class="text-capitalize text-body-1 my-4" outlined @click="handleAlternativesAnalysis">
+                    Alternatives Analysis
+                  </v-btn>
+                </div>
+              </v-card>
+            </div>
+          </v-container>
+        </YA_ScrollComponent>
+        <v-divider vertical class="ml-4"></v-divider>
+      </v-col>
+      <v-col cols="6">
+        <AnalyseChat />
+      </v-col>
+    </v-row>
+  </div>
 </template>
   
 <script>
 import Chart from 'chart.js/auto';
 import AnalyseChat from '@/components/ProjectComponents/AnalyseChat.vue';
+import YA_ScrollComponent from '@/components/SocialComponents/YA_ScrollComponent.vue';
+
 
 export default {
   name: 'ProjectAnalyseSummary',
 
   components: {
     AnalyseChat,
+    YA_ScrollComponent,
   },
 
   data() {

@@ -10,7 +10,10 @@
   "dependencies": {
     "chart.js": "^4.4.2",
     "core-js": "^3.8.3",
+    "dompurify": "^3.0.9",
+    "marked": "^5.1.2",
     "vue": "^2.6.14",
+    "vue-custom-scrollbar": "^1.4.4",
     "vue-router": "^3.6.5",
     "vuedraggable": "^2.24.3",
     "vuetify": "^2.6.0",
