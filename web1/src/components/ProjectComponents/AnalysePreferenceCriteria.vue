@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       preferenceCriteriaTags: ['size', 'beach', 'type', 'isok', 'position', 'school'],
-      preferenceData: [23, 32, 12, 30, 20, 16]
+      preferenceData: [0.23, 0.32, 0.12, 0.3, 0.2, 0.16]
     }
   },
 
@@ -38,20 +38,26 @@ export default {
   },
 
   mounted() {
-    this.generatePreferenceChart();
+    this.generatePreferenceCriteriaChart();
   },
   
   methods: {
-    generatePreferenceChart() {
+    generatePreferenceCriteriaChart() {
       const ctx = this.$refs.perferanceBarChart.getContext('2d');
       new Chart(ctx, {
         type: 'polarArea',
         data: {
-          labels: this.preferenceTags,
+          labels: this.preferenceCriteriaTags,
           datasets: [{
             data: this.preferenceData,
-            backgroundColor: '#67c9cb',
-            label: 'Dataset 1',
+            backgroundColor: [
+              'rgba(255, 160, 180, 0.8)',
+              'rgba(255, 200, 144, 0.8)',
+              'rgba(255, 225, 154, 0.8)',
+              'rgba(165, 223, 223, 0.8)',
+              'rgba(154, 208, 245, 0.8)',
+            ],
+            label: 'Criteria',
             borderWidth: 1
           }]
         },
@@ -64,17 +70,38 @@ export default {
                 centerPointLabels: true,
                 font: {
                   size: 18
+                },
+                ticks: {
+                  callback: function(value) {
+                    return (value * 100) + '%';
+                  }
+                },
+              },
+              ticks: {
+                callback: function(value) {
+                  return (value * 100) + '%';
                 }
-              }
+              },
             }
           },
           plugins: {
             legend: {
+              display: false,
               position: 'top',
             },
-            title: {
-              display: true,
-              text: 'Chart.js Polar Area Chart With Centered Point Labels'
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  var label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.parsed.r !== null) {
+                    label += (context.parsed.r * 100).toFixed(2) + '%';
+                  }
+                  return label;
+                }
+              }
             }
           }
         }
