@@ -127,8 +127,6 @@ export default {
         if (this.$router.currentRoute.path !== '/' + routerName) {
           this.$router.push('/' + routerName);
         }
-
-        console.log(routerName)
       });
     },
     handleSingleItem(name) {

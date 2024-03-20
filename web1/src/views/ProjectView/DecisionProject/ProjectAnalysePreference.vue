@@ -8,7 +8,7 @@
       <v-tabs
         active-class="selected-tab"
         color="#439798"
-        slider-size="6"
+        slider-size="4"
         v-model="analysePreferenceTabSelect"
         align-with-title
       >
@@ -22,15 +22,33 @@
         </v-tab>
       </v-tabs>
     </div>
+
     <v-divider></v-divider>
+
+    <div v-if="analysePreferenceTabSelect == 0">
+      <AnalysePreferenceValues />
+    </div>
+    <div v-else-if="analysePreferenceTabSelect == 1">
+      <AnalysePreferenceCriteria />
+    </div>
+    <div v-else-if="analysePreferenceTabSelect == 2">
+      <AnalysePreferenceLevels />
+    </div>
   </v-container>
 </template>
   
 <script>
+import AnalysePreferenceValues from '@/components/ProjectComponents/AnalysePreferenceValues.vue'
+import AnalysePreferenceCriteria from '@/components/ProjectComponents/AnalysePreferenceCriteria.vue'
+import AnalysePreferenceLevels from '@/components/ProjectComponents/AnalysePreferenceLevels.vue'
+
 export default {
   name: 'ProjectAnalysePreference',
 
   components: {
+    AnalysePreferenceValues,
+    AnalysePreferenceCriteria,
+    AnalysePreferenceLevels,
   },
 
   data() {
