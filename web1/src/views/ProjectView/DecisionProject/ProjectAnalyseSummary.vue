@@ -79,9 +79,10 @@ export default {
   },
 
   mounted() {
-    this.generatePreferenceChart();
-    this.generateAlternativeChart();
-
+    this.$nextTick(() => {
+      this.generatePreferenceChart();
+      this.generateAlternativeChart();
+    })
   },
   
   methods: {

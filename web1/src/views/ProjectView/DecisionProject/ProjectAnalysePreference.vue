@@ -32,7 +32,7 @@
       <AnalysePreferenceCriteria />
     </div>
     <div v-else-if="analysePreferenceTabSelect == 2">
-      <AnalysePreferenceLevels />
+      <AnalysePreferenceEffects />
     </div>
   </v-container>
 </template>
@@ -40,7 +40,7 @@
 <script>
 import AnalysePreferenceValues from '@/components/ProjectComponents/AnalysePreferenceValues.vue'
 import AnalysePreferenceCriteria from '@/components/ProjectComponents/AnalysePreferenceCriteria.vue'
-import AnalysePreferenceLevels from '@/components/ProjectComponents/AnalysePreferenceLevels.vue'
+import AnalysePreferenceEffects from '@/components/ProjectComponents/AnalysePreferenceEffects.vue'
 
 export default {
   name: 'ProjectAnalysePreference',
@@ -48,14 +48,14 @@ export default {
   components: {
     AnalysePreferenceValues,
     AnalysePreferenceCriteria,
-    AnalysePreferenceLevels,
+    AnalysePreferenceEffects,
   },
 
   data() {
     return {
       analysePreferenceTabSelect: null,
       analysePreferenceTabItems: [
-        'Values', 'Criteria', 'Levels'
+        'Values', 'Criteria', 'Marginal effects'
       ],
     }
   },
