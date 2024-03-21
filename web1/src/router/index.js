@@ -12,6 +12,8 @@ import ExcutionView from '@/views/FuncView/ExcutionView.vue';
 import AboutView from '@/views/FuncView/AboutView.vue';
 import SettingView from '@/views/FuncView/SettingView.vue';
 
+import Login from '@/components/SocialComponents/YA_Login.vue';
+
 import FilesView from '@/views/FuncView/DecisionComponents/FilesView.vue';
 import CriteriaView from '@/views/FuncView/DecisionComponents/CriteriaView.vue';
 import TradeView from '@/views/FuncView/DecisionComponents/TradeView.vue';
@@ -178,6 +180,14 @@ const routes = [
     component: ProjectAnalyseAlternatives,
     meta:{
       'title':'Decision - ADecision'
+    },
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login,
+    meta:{
+      'title':'Login - ADecision'
     },
   },
   {

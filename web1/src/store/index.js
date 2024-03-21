@@ -6,6 +6,10 @@ Vue.use(Vuex);
   const state= {
     userMsg: {
       isLogin: false,
+      userID: '',
+      userName: '',
+      token: '',
+      isProUser: false,
     },
     systemMsg: {
       leftBarTag: true,
@@ -18,6 +22,18 @@ Vue.use(Vuex);
     // userMsg
     getisLogin() {
       return state.userMsg.isLogin
+    },
+    getuserID() {
+      return state.userMsg.userID
+    },
+    getuserName() {
+      return state.userMsg.userName
+    },
+    gettoken() {
+      return state.userMsg.token
+    },
+    getisProUser() {
+      return state.userMsg.isProUser
     },
 
     // systemMsg
@@ -37,6 +53,18 @@ Vue.use(Vuex);
     // userMsg
     HandleisLogin(state, data) {
       state.userMsg.isLogin = data; 
+    },
+    HandleuserID(state, data) {
+      state.userMsg.userID = data; 
+    },
+    HandleuserName(state, data) {
+      state.userMsg.userName = data; 
+    },
+    Handletoken(state, data) {
+      state.userMsg.token = data; 
+    },
+    HandleisProUser(state, data) {
+      state.userMsg.isProUser = data; 
     },
 
     // systemMsg
