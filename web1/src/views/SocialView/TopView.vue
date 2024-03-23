@@ -19,7 +19,7 @@
         <v-tooltip bottom v-else>
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="grey-darken" v-bind="attrs" v-on="on" small class="mx-3" icon @click="handleLogin">
-              <v-icon size="35">mdi-account-circle-outline</v-icon>
+              <v-icon size="30" color="grey lighten-3">mdi-account-circle-outline</v-icon>
             </v-btn>
           </template>
           <span>Login</span>

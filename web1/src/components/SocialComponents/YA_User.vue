@@ -9,7 +9,7 @@
       offset-x
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-avatar v-on="on" v-bind="attrs" class="mr-2 ml-2" size="36" color="indigo">
+        <v-avatar v-on="on" v-bind="attrs" class="mr-2 ml-2" size="30" color="indigo">
           <!-- <v-img alt="avatar" contain :src="photoUrl" /> -->
           <v-icon dark>
             mdi-account-circle

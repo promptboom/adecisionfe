@@ -59,8 +59,10 @@
               <span class="text-body-1 font-weight-black ml-4">{{ item.name }}</span>
             </div>
           </template>
-          <template v-slot:[`item.contribution`]="{ item, index }">
-            <YA_AlternativesChart :ref="'ChartBar' + index" :labels="item.preferenceCriteria" :data="item.preferenceLevel" />
+          <template v-slot:[`item.contribution`]="{ item }">
+            <!-- <YA_AlternativesChart :ref="'ChartBar' + index" :labels="item.preferenceCriteria" :data="item.preferenceLevel" /> -->
+            <YA_AlternativesProgress :data="item.preferenceLevel1" />
+
           </template>
           <template v-slot:no-data>
             <v-btn
@@ -77,13 +79,15 @@
 </template>
   
 <script>
-import YA_AlternativesChart from '@/components/SocialComponents/YA_AlternativesChart.vue';
+// import YA_AlternativesChart from '@/components/SocialComponents/YA_AlternativesChart.vue';
+import YA_AlternativesProgress from '@/components/SocialComponents/YA_AlternativesProgress.vue';
 
 export default {
   name: 'ProjectAnalyseAlternatives',
 
   components: {
-    YA_AlternativesChart,
+    // YA_AlternativesChart,
+    YA_AlternativesProgress,
   },
 
   data() {
@@ -123,9 +127,9 @@ export default {
   },
 
   mounted() {
-    this.desserts.forEach((item, index) => {
-      this.$refs['ChartBar' + index].handleChartBarCreate();
-    });
+    // this.desserts.forEach((item, index) => {
+    //   this.$refs['ChartBar' + index].handleChartBarCreate();
+    // });
   },
   
   methods: {
@@ -141,6 +145,46 @@ export default {
           protein: 4.0,
           preferenceCriteria: ['size', 'beach', 'type', 'isok', 'position', 'school'],
           preferenceLevel: [[0.23], [0.32], [0.12], [0.3]],
+          preferenceLevel1: [
+            {
+              name: 'size',
+              content: '123',
+              value: 0.23,
+              color: 'red',
+            },
+            {
+              name: 'beach',
+              content: '123',
+              value: 0.32,
+              color: 'orange',
+
+            },
+            {
+              name: 'type',
+              content: '123',
+              value: 0.12,
+              color: 'yellow',
+            },
+            {
+              name: 'isok',
+              content: '123',
+              value: 0.3,
+              color: 'green',
+
+            },
+            {
+              name: 'position',
+              content: '123',
+              value: 0,
+              color: 'pink',
+            },
+            {
+              name: 'school',
+              content: '123',
+              value: 0,
+              color: 'blue',
+            },
+          ],
         },
         {
           name: 'Ice cream sandwich',
@@ -152,6 +196,45 @@ export default {
           protein: 4.3,
           preferenceCriteria: ['size', 'beach', 'type', 'isok', 'position', 'school'],
           preferenceLevel: [[0.33], [0.22], [0.22], [0.13], [0.32]],
+          preferenceLevel1: [
+            {
+              name: 'size',
+              content: '123',
+              value: 0.33,
+              color: 'red',
+
+            },
+            {
+              name: 'beach',
+              content: '123',
+              value: 0.22,
+              color: 'orange',
+            },
+            {
+              name: 'type',
+              content: '123',
+              value: 0.22,
+              color: 'yellow',
+            },
+            {
+              name: 'isok',
+              content: '123',
+              value: 0.13,
+              color: 'green',
+            },
+            {
+              name: 'position',
+              content: '123',
+              value: 0.32,
+              color: 'pink',
+            },
+            {
+              name: 'school',
+              content: '123',
+              value: 0,
+              color: 'blue',
+            },
+          ],
         },
         // {
         //   name: 'Eclair',
