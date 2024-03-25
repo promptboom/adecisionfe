@@ -36,7 +36,7 @@
     </div>
     
     <div class="mt-2">
-      <span class="text-body-2 ml-4">Project Decision Objectives</span>
+      <span class="text-body-2 ml-4">Project Decision Purpose</span>
       <span class="text-body-2 red--text mx-2">*</span>
       <v-textarea
         v-model="projectDO"
@@ -44,7 +44,7 @@
         counter
         rows="3"
         solo
-        label="Project Decision Objectives"
+        label="Project Decision Purpose"
       ></v-textarea>
     </div>
 

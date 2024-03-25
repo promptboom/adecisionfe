@@ -15,6 +15,7 @@ Vue.use(Vuex);
       leftBarTag: true,
       routerPath: "",
       projectName: "",
+      ADecisionSnackbar: '',
     }
   }
 
@@ -46,6 +47,9 @@ Vue.use(Vuex);
     getprojectName() {
       return state.systemMsg.projectName
     },
+    getADecisionSnackbar() {
+      return state.systemMsg.ADecisionSnackbar
+    },
 
   }
 
@@ -76,6 +80,9 @@ Vue.use(Vuex);
     }, 
     HandleprojectName(state, data) {
       state.systemMsg.projectName = data; 
+    },
+    HandleADecisionSnackbar(state, data) {
+      state.systemMsg.ADecisionSnackbar = data; 
     },
   }
 

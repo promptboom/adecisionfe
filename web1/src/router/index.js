@@ -8,7 +8,7 @@ import { getLocalStorage, setLocalStorage, removeLocalStorage } from '@/utils/Sy
 import BeginView from '@/views/FuncView/BeginView.vue';
 import HomeView from '@/views/FuncView/HomeView.vue';
 import DecisionView from '@/views/FuncView/DecisionView.vue';
-import ExcutionView from '@/views/FuncView/ExcutionView.vue';
+import ExecutionView from '@/views/FuncView/ExecutionView.vue';
 import AboutView from '@/views/FuncView/AboutView.vue';
 import SettingView from '@/views/FuncView/SettingView.vue';
 
@@ -20,7 +20,7 @@ import TradeView from '@/views/FuncView/DecisionComponents/TradeView.vue';
 import AlternativesView from '@/views/FuncView/DecisionComponents/AlternativesView.vue';
 import AnalyseView from '@/views/FuncView/DecisionComponents/AnalyseView.vue';
 
-import TestingView from '@/views/FuncView/ExcutionComponents/TestingView.vue';
+import TestingView from '@/views/FuncView/ExecutionComponents/TestingView.vue';
 
 import ProjectMsg from '@/views/ProjectView/DecisionProject/ProjectMsg.vue';
 import ProjectFiles from '@/views/ProjectView/DecisionProject/ProjectFiles.vue';
@@ -103,11 +103,11 @@ const routes = [
     },
   },
   {
-    path: '/Excution',
-    name: 'Excution',
-    component: ExcutionView,
+    path: '/Execution',
+    name: 'Execution',
+    component: ExecutionView,
     meta:{
-      'title':'Excution - ADecision'
+      'title':'Execution - ADecision'
     },
   },
   {
@@ -115,7 +115,7 @@ const routes = [
     name: 'Testing',
     component: TestingView,
     meta:{
-      'title':'Excution - ADecision'
+      'title':'Execution - ADecision'
     },
   },
   {
@@ -229,7 +229,7 @@ router.beforeEach((to,from,next)=>{
   if (["Files", "Criteria", "Alternatives", "Trade-off", "Analyse"].includes(to.name)) {
     routerPath = "/Decision/" + to.name
   } else if (["Testing"].includes(to.name)) {
-    routerPath = "/Excution/" + to.name
+    routerPath = "/Execution/" + to.name
   } else if (to.name.startsWith("Project")) {
     routerPath = "/" + projectName + "/" + to.name.substring(7)
   } else {

@@ -33,6 +33,19 @@ export default {
     }
   },
 
+  created() {
+    this.$store.watch(
+      (state) => state.systemMsg.ADecisionSnackbar, () => {
+        if (this.$store.getters.getADecisionSnackbar !== '') {
+          this.$refs.YA_SnackbarRef.handleSnackbar(this.$store.getters.getADecisionSnackbar);
+          this.$store.commit('HandleADecisionSnackbar', '');
+        }
+      }, {
+        deep: true
+      }
+    );
+  },
+
   mounted() {
     if (getLocalStorage('ADecisionProject')) {
       this.$store.commit('HandleprojectName', getLocalStorage('ADecisionProject'));

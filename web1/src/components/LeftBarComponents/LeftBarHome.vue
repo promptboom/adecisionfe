@@ -74,7 +74,7 @@ export default {
           ],
         },
         {
-          name: "Excution Support",
+          name: "Execution Support",
           items: [
             ['Testing', 'mdi-plus-outline'],
           ],
@@ -107,8 +107,8 @@ export default {
       let routerName = ""
       if (name.startsWith("Decision")) {
         routerName = "Decision"
-      } else if (name.startsWith("Excution")) {
-        routerName = "Excution"
+      } else if (name.startsWith("Execution")) {
+        routerName = "Execution"
       }
       if (this.$router.currentRoute.path !== '/' + routerName) {
         this.$router.push('/' + routerName);

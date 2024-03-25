@@ -2,11 +2,11 @@
   <div>
     <v-row class="justify-center pt-16">
       <v-col  cols="10" sm="10" md="4" lg="4" xl="4" class="d-flex justify-center flex-wrap">
-        <v-avatar size="84">
-          <!-- <v-img alt="avatar" contain src="@/assets/P.png" /> -->
-          <span class="text--darken-4 text-h6 font-weight-black" style="color: #439798;">ADecision</span>
+        <!-- <v-avatar size="84">
+          <v-img alt="avatar" contain src="@/assets/P.png" />
+        </v-avatar> -->
+        <span class="text-h3 font-weight-black my-8" style="color: #439798;">ADecision</span>
 
-        </v-avatar>
         <v-container>
           <v-text-field
             label="Email Address"
@@ -15,7 +15,7 @@
             v-model="emailAddress"
           ></v-text-field>
           <v-text-field label="Email verification code" v-model="InputCode">
-            <v-btn color="black" slot="append" class='text-capitalize white--text mx-auto text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6' :disabled="isFetching" @click='sendVerificationCode'>
+            <v-btn color="#439798" slot="append" class='text-capitalize white--text mx-auto text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6' :disabled="isFetching" @click='sendVerificationCode'>
               {{ isFetching ? `${ countDown }s ` : "Request code" }}
             </v-btn>
           </v-text-field>
@@ -24,7 +24,7 @@
               <Turnstile :sitekey="sitekey" @verify="verify"/>
             </v-col>
           </v-row>
-          <v-btn color="black" width="100%" class='mt-6 text-capitalize mx-auto white--text text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6 font-weight-black' @click='handleEmailLogin' :loading="LoginLoading" :disabled="cfShow">
+          <v-btn color="#439798" width="100%" class='mt-6 text-capitalize mx-auto white--text text-body-2 text-sm-body-2 text-md-body-1 text-lg-h6 text-xl-h6 font-weight-black' @click='handleEmailLogin' :loading="LoginLoading" :disabled="cfShow">
             Continue with Email
           </v-btn>
         </v-container>
@@ -90,7 +90,7 @@ export default {
     },
     async sendVerificationCode() {
       if (!this.isValidEmail(this.emailAddress)) {
-        this.$refs.YA_SnackbarRef.handleSnackbar('Invalid Email Address');
+        this.$store.commit('HandleADecisionSnackbar', 'Invalid Email Address');
         return;
       }
       this.isFetching = true;
@@ -105,15 +105,15 @@ export default {
 
       if (res.statusCode == 1) {
         this.startCountDown();
-        this.$refs.YA_SnackbarRef.handleSnackbar('Success');
+        this.$store.commit('HandleADecisionSnackbar', 'Success');
       } else {
-        this.$refs.YA_SnackbarRef.handleSnackbar('Failed : ' + res.statusInfo);
+        this.$store.commit('HandleADecisionSnackbar', 'Failed : ' + res.statusInfo);
         this.isFetching = false;
       }
     },
     async handleEmailLogin() {
       if (this.isLogin) {
-        this.$refs.YA_SnackbarRef.handleSnackbar('You are already login !');
+        this.$store.commit('HandleADecisionSnackbar', 'You are already login !');
       } else {
         if (this.InputCode) {
           this.LoginLoading = true;
@@ -130,10 +130,10 @@ export default {
           const res = await requestPost(request_header, request_json, request_url);
 
           if (res.statusCode == 1) {
-            this.$refs.YA_SnackbarRef.handleSnackbar('Login success');
+            this.$store.commit('HandleADecisionSnackbar', 'Login success');
 
-            setLocalStorage('PromptBoomUser', this.emailAddress);
-            setLocalStorage('PromptBoomToken', res.data.token);
+            setLocalStorage('ADecisionUser', this.emailAddress);
+            setLocalStorage('ADecisionToken', res.data.token);
 
             this.$store.commit('HandleuserID', this.emailAddress);
             this.$store.commit('Handletoken', res.data.token);
@@ -148,7 +148,7 @@ export default {
               this.$router.push('/');
             }
           } else {
-            this.$refs.YA_SnackbarRef.handleSnackbar('Login failed : ' + res.statusInfo);
+            this.$store.commit('HandleADecisionSnackbar', 'Login failed : ' + res.statusInfo);
             this.LoginLoading = false;
             this.cfShow = true;
             this.refresh = false;
@@ -157,7 +157,7 @@ export default {
             });
           }
         } else {
-          this.$refs.YA_SnackbarRef.handleSnackbar('Please enter the code');
+          this.$store.commit('HandleADecisionSnackbar', 'Please enter the code');
         }
       }
     },

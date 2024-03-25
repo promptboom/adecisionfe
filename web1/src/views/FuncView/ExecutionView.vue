@@ -1,13 +1,13 @@
 <template>
   <div>
-    ExcutionView
+    ExecutionView
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'ExcutionView',
+  name: 'ExecutionView',
 
   components: {
   },

@@ -50,7 +50,7 @@
           <div class="d-flex justify-space-between align-center mx-2 mb-2 mt-1">
             <div>
               <v-chip x-small label color="orange" text-color="white" v-if="item.type=='Decision'">Decision</v-chip>
-              <v-chip x-small label color="green" text-color="white" v-else-if="item.type=='Excution'">Excution</v-chip>
+              <v-chip x-small label color="green" text-color="white" v-else-if="item.type=='Execution'">Execution</v-chip>
               <v-chip x-small label color="blue" text-color="white" v-else-if="item.type=='Project'">Project</v-chip>
             </div>
             <v-tooltip bottom>
@@ -131,7 +131,7 @@
                     <v-list-item-content>
                       <div class="d-flex align-center">
                         <v-icon v-if="Item.type == 'Decision'" color="orange">mdi-redo</v-icon>
-                        <v-icon v-else-if="Item.type == 'Excution'" color="green">mdi-autorenew</v-icon>
+                        <v-icon v-else-if="Item.type == 'Execution'" color="green">mdi-autorenew</v-icon>
                         <span class="ml-4 text-body-2">{{ Item.name }}</span>
                       </div>
                     </v-list-item-content>
@@ -175,7 +175,7 @@ export default {
           icon: "mdi-redo",
         },
         {
-          name: "New excution",
+          name: "New execution",
           iconColor: "#439798",
           icon: "mdi-autorenew",
         },
@@ -192,7 +192,7 @@ export default {
           id: "0002",
           name: "What target to decision asdfljasldfnsoakdnglkjsdlansdkfjsdl",
           time: "2024-03-02 13:00:00",
-          type: "Excution",
+          type: "Execution",
           msg: "this is a target to decision.",
         },
         {
@@ -216,9 +216,9 @@ export default {
               type: "Decision"
             },
             {
-              name: "restart Excution",
+              name: "restart Execution",
               time: "2024-12-23 23:00:00",
-              type: "Excution"
+              type: "Execution"
             },
           ]
         },

@@ -32,6 +32,8 @@
 <script>
 import YA_barTag from '@/components/SocialComponents/YA_barTag.vue';
 import YA_User from '@/components/SocialComponents/YA_User.vue';
+import { getLocalStorage, setLocalStorage, removeLocalStorage } from '@/utils/SystemUtils/localStorage.js'
+import { requestPost } from '@/utils/SystemUtils/request.js';
 
 export default {
   name: 'TopView',
@@ -58,6 +60,33 @@ export default {
       }
     );
     this.routerPath = this.$store.getters.getrouterPath;
+
+    this.$store.watch(
+      (state) => state.userMsg.isLogin, () => {
+        this.isLogin = this.$store.getters.getisLogin;
+        if (this.isLogin) {
+          this.handleGetUserMsg();
+        }
+      }, {
+        deep: true
+      }
+    );
+    this.isLogin = this.$store.getters.getisLogin;
+
+    this.$store.watch(
+      (state) => state.userMsg.isProUser, () => {
+        this.isProUser = this.$store.getters.getisProUser;
+      }, {
+        deep: true
+      }
+    );
+    this.isProUser = this.$store.getters.getisProUser;
+
+    if (getLocalStorage('ADecisionUser') && getLocalStorage('ADecisionToken')) {
+      this.$store.commit('HandleuserID', getLocalStorage('ADecisionUser'));
+      this.$store.commit('Handletoken', getLocalStorage('ADecisionToken'));
+      this.$store.commit('HandleisLogin', true);
+    }
   },
 
   methods: {
@@ -66,10 +95,42 @@ export default {
       if (!this.isLogin) {
         url = '/Login'
       } else {
-        url = '/chat'
+        url = '/Home'
       }
       if (this.$route.path !== url) {
         this.$router.push({ path: url});
+      }
+      
+    },
+
+    async handleGetUserMsg() {
+      let request_header = {
+        email: getLocalStorage('ADecisionUser'),
+        token: getLocalStorage('ADecisionToken')
+      };
+      let request_json = {};
+
+      let request_url = '/requestGetUserMsg';
+      const res = await requestPost(request_header, request_json, request_url);
+
+      if (res.statusCode == 1) {
+        this.$store.commit('HandleuserName', res.data[0].userName);
+        let isProUser=false
+        const subscribeTime=new Date(res.data[0].subscribeTime*1000)
+
+        const now=new Date()
+        const oneMonthAgo=new Date();
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        if (subscribeTime >= oneMonthAgo) {
+          isProUser=true
+        } else {
+          isProUser=false
+        }
+
+        this.$store.commit('HandleisProUser', isProUser);
+
+      } else {
+        this.$store.commit('HandleADecisionSnackbar', 'Failed to retrieve user information:' + res.statusInfo);
       }
     },
   }
